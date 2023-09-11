@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: PS
+    tables:
+      - name: F_SN
+      - name: C_IMPORT

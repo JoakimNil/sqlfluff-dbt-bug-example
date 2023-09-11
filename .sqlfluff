@@ -1,0 +1,43 @@
+[sqlfluff]
+dialect = snowflake
+templater = dbt
+runaway_limit = 10
+max_line_length = 200
+indent_unit = space
+sql_file_exts = .sql
+
+# ST06 (structure.column_order) is disabled because it's a controversial rule
+# that will flag things such as coalesce(dz_id, ps_id, sf_id) as id as an error
+# if it is included as the first column.
+exclude_rules = structure.column_order
+
+[sqlfluff:indentation]
+tab_space_size = 2
+
+[sqlfluff:layout:type:comma]
+# This project follows the leading comma convention.
+spacing_before = touch
+line_position = leading
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.expression]
+allow_scalar = False
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:references.special_chars]
+# The special char rules also runs on sources, therefore certain refrences have to be ignored.
+ignore_words_regex = s.hk.hybridin luokka
+ignore_words = DATA VALUE
